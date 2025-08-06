@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Packages - bKash Payment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Buy Internet Packages</h1>
+    <div id="packages">
+        <!-- Example packages -->
+        <div class="package">
+            <h2>Basic Pack</h2>
+            <p>1GB for 1 day</p>
+            <p>Price: 50 BDT</p>
+            <button onclick="payWithBkash('basic')">Buy with bKash</button>
+        </div>
+        <div class="package">
+            <h2>Standard Pack</h2>
+            <p>5GB for 7 days</p>
+            <p>Price: 200 BDT</p>
+            <button onclick="payWithBkash('standard')">Buy with bKash</button>
+        </div>
+        <div class="package">
+            <h2>Premium Pack</h2>
+            <p>20GB for 30 days</p>
+            <p>Price: 700 BDT</p>
+            <button onclick="payWithBkash('premium')">Buy with bKash</button>
+        </div>
+    </div>
+    <script src="bkash.js"></script>
+</body>
+</html>
