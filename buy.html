@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Internet Package</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="pkgprice.js"></script>
+</head>
+<body>
+    <div class="stylish-bg">
+        <div class="login-card">
+            <h1 class="page-title">Buy Internet Package</h1>
+            <form id="buyForm" class="login-form">
+                <input type="hidden" id="packageName" name="packageName">
+                <input type="hidden" id="amount" name="amount">
+                <div class="input-group">
+                    <img src="img/user.svg" class="input-icon" alt="User">
+                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <img src="img/user.svg" class="input-icon" alt="Phone">
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number (11 digits)" required pattern="\d{11}" maxlength="11" minlength="11" title="Please enter an 11-digit phone number">
+                </div>
+                <input type="hidden" id="email" name="email" value="default@email.com">
+                <div class="input-group" style="display:none;">
+                    <img src="img/user.svg" class="input-icon" alt="Email">
+                    <input type="email" id="email_hidden" name="email_hidden" placeholder="Email">
+                </div>
+                <button type="submit" class="btn-login">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+    <script>
+
+    // Get package info from URL and auto-fetch price if missing
+    const urlParams = new URLSearchParams(window.location.search);
+    const pkgName = urlParams.get('package');
+    let pkgAmount = urlParams.get('amount');
+    document.getElementById('packageName').value = pkgName;
+    if (pkgAmount) {
+        document.getElementById('amount').value = pkgAmount;
+    } else if (pkgName) {
+        // Fetch price from login.html if not present
+        fetchPackagePrices(function(priceMap) {
+            if (priceMap[pkgName]) {
+                document.getElementById('amount').value = priceMap[pkgName];
+            }
+        });
+    }
+
+    document.getElementById('buyForm').onsubmit = function(e) {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const packageName = document.getElementById('packageName').value;
+        const amount = document.getElementById('amount').value;
+        const data = {
+            full_name: fullName,
+            email: email,
+            amount: amount,
+            metadata: { package: packageName, phone: phone },
+            webhook_url: window.location.origin + '/status.html',
+            return_type: 'GET',
+            redirect_url: window.location.origin + '/success.html?name=' + encodeURIComponent(fullName) + '&phone=' + encodeURIComponent(phone) + '&package=' + encodeURIComponent(packageName),
+            cancel_url: window.location.origin + '/error.html'
+        };
+
+        const options = {
+        // Send payment data to your secure backend endpoint
+        fetch('/api/create-payment', {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.status === true && res.payment_url) {
+                window.location.href = res.payment_url;
+            } else {
+                alert('Payment Error: ' + (res.message || 'Unknown error'));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Network or API error');
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Internet Package</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="pkgprice.js"></script>
+</head>
+<body>
+    <div class="stylish-bg">
+        <div class="login-card">
+            <h1 class="page-title">Buy Internet Package</h1>
+            <form id="buyForm" class="login-form">
+                <input type="hidden" id="packageName" name="packageName">
+                <input type="hidden" id="amount" name="amount">
+                <div class="input-group">
+                    <img src="img/user.svg" class="input-icon" alt="User">
+                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <img src="img/user.svg" class="input-icon" alt="Phone">
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number (11 digits)" required pattern="\d{11}" maxlength="11" minlength="11" title="Please enter an 11-digit phone number">
+                </div>
+                <input type="hidden" id="email" name="email" value="default@email.com">
+                <div class="input-group" style="display:none;">
+                    <img src="img/user.svg" class="input-icon" alt="Email">
+                    <input type="email" id="email_hidden" name="email_hidden" placeholder="Email">
+                </div>
+                <button type="submit" class="btn-login">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Get package info from URL and auto-fetch price if missing
+    const urlParams = new URLSearchParams(window.location.search);
+    const pkgName = urlParams.get('package');
+    let pkgAmount = urlParams.get('amount');
+    document.getElementById('packageName').value = pkgName;
+    if (pkgAmount) {
+        document.getElementById('amount').value = pkgAmount;

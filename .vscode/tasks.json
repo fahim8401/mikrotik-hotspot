@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Open alogin.html in default browser",
+			"command": "start alogin.html"
+		},
+		{
+			"type": "shell",
+			"label": "Open login.html in default browser",
+			"command": "start login.html"
+		}
+	]
+}

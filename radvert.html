@@ -11,29 +11,27 @@
 
     var popup = '';
     function openOrig() {
-	if (window.focus) popup.focus();
-	location.href = unescape('$(link-orig-esc)');
+    if (window.focus) popup.focus();
+    location.href = unescape('$(link-orig-esc)');
     }
     function openAd() {
-	location.href = unescape('$(link-redirect-esc)');
+    location.href = unescape('$(link-redirect-esc)');
     }
     function openAdvert() {
-	if (window.name != 'hotspot_advert') {
-		popup = open('$(link-redirect)', 'hotspot_advert', '');
-		setTimeout("openOrig()", 1000);
-		return;
-	}
-	setTimeout("openAd()", 1000);
+    if (window.name != 'hotspot_advert') {
+        popup = open('$(link-redirect)', 'hotspot_advert', '');
+        setTimeout("openOrig()", 1000);
+        return;
+    }
+    setTimeout("openAd()", 1000);
     }
 </script>
 </head>
 <body onLoad="openAdvert()">
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                <h1>Advertisement</h1>
-                <p class="info">If nothing happens, open <a href="$(link-redirect)" target="hotspot_advert">advertisement</a> manually.</p>
-            </div>
+    <div class="stylish-bg">
+        <div class="login-card">
+            <h1 class="page-title">Advertisement</h1>
+            <div class="info-block">If nothing happens, open <a href="$(link-redirect)" target="hotspot_advert">advertisement</a> manually.</div>
         </div>
     </div>
 </body>

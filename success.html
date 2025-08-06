@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="stylish-bg">
+        <div class="login-card">
+            <h1 class="page-title">Payment Successful!</h1>
+            <div class="info-block">Thank you for your purchase.<br>Your internet package will be activated shortly.</div>
+            <div id="userInfo" class="info-block" style="margin: 10px 0;"></div>
+        </div>
+    </div>
+    <script>
+    // Show user info from URL
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const phone = params.get('phone');
+    const pack = params.get('package');
+    if(name && phone && pack) {
+        document.getElementById('userInfo').innerHTML = `<b>Name:</b> ${name}<br><b>Phone:</b> ${phone}<br><b>Package:</b> ${pack}`;
+        // Make HTTP POST request to backend to create user in MikroTik
+        fetch('create-user.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'name=' + encodeURIComponent(name) +
+                  '&phone=' + encodeURIComponent(phone) +
+                  '&package=' + encodeURIComponent(pack)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                document.getElementById('userInfo').innerHTML += '<br><b>Username:</b> ' + data.user + '<br><b>Password:</b> ' + data.pass;
+                // SMS sending is now handled server-side in create-user.php
+                // Add Activate button
+                document.getElementById('userInfo').innerHTML += '<br><button id="activateBtn" class="btn-login" style="margin-top:14px;">Activate Now</button>';
+                document.getElementById('activateBtn').onclick = function() {
+                    // Create a form and submit to login.html with credentials
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'login.html';
+                    form.style.display = 'none';
+                    var userInput = document.createElement('input');
+                    userInput.name = 'username';
+                    userInput.value = data.user;
+                    form.appendChild(userInput);
+                    var passInput = document.createElement('input');
+                    passInput.name = 'password';
+                    passInput.value = data.pass;
+                    form.appendChild(passInput);
+                    document.body.appendChild(form);
+                    form.submit();
+                };
+            } else {
+                document.getElementById('userInfo').innerHTML += '<br><span style="color:red">User creation failed: ' + data.message + '</span>';
+            }
+        })
+        .catch(err => {
+            document.getElementById('userInfo').innerHTML += '<br><span style="color:red">User creation failed: Network error</span>';
+        });
+    }
+    </script>
+</body>
+</html>

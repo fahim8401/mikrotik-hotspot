@@ -1,3 +1,92 @@
+    <style>
+    /* ...existing login styles... */
+    .package-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .package-title {
+        color: #4158d0;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    #packages {
+        display: grid !important;
+        gap: 24px !important;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .package {
+        background: linear-gradient(120deg, #4158d0 0%, #c850c0 100%);
+        color: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(65,88,208,0.10);
+        padding: 28px 20px 22px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.15s, box-shadow 0.15s;
+        border: 2px solid #fff;
+    }
+    .package:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(65,88,208,0.18);
+        border: 2px solid #ffcc70;
+    }
+    .package h2 {
+        color: #fff;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+    .package ul {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+        width: 100%;
+    }
+    .package ul li {
+        font-size: 1.05rem;
+        margin: 6px 0;
+        color: #fff;
+        opacity: 0.95;
+    }
+    .package p {
+        margin: 12px 0 0 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ffcc70;
+    }
+    .package .btn-login {
+        margin-top: 18px;
+        background: #ffcc70;
+        color: #4158d0;
+        font-weight: 700;
+        border: none;
+        box-shadow: 0 2px 8px rgba(255,204,112,0.12);
+        transition: background 0.2s, color 0.2s;
+    }
+    .package .btn-login:hover {
+        background: #fff;
+        color: #c850c0;
+    }
+    @media (max-width: 700px) {
+        #packages {
+            grid-template-columns: 1fr !important;
+        }
+        .package-section {
+            margin-top: 24px;
+        }
+    }
+    </style>
 <!doctype html>
 <html lang="en">
 
@@ -7,7 +96,167 @@
     <meta http-equiv="expires" content="-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Internet hotspot - Log in</title>
-    <link rel="stylesheet" href="css/style.css">
+   
+    <style>
+    body {
+        background: #f4f6fb;
+    }
+    header {
+        width: 100%;
+        background: linear-gradient(120deg, #4158d0 0%, #c850c0 50%, #ffcc70 100%);
+        padding: 24px 0 12px 0;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(65,88,208,0.08);
+        margin-bottom: 32px;
+    }
+    .logo {
+        max-width: 180px;
+        margin-bottom: 0;
+    }
+    .page-title, h2.page-title {
+        color: #4158d0;
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 10px 0 0 0;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    .stylish-bg {
+        min-height: unset;
+        width: 100%;
+        display: block;
+        background: none;
+        padding: 0 0 40px 0;
+    }
+    .login-card {
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+        border-radius: 20px;
+        border: 1px solid #e0e0e0;
+        padding: 36px 32px 32px 32px;
+        max-width: 370px;
+        width: 100%;
+        margin: 0 auto 32px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: popIn 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+        position: relative;
+        top: 0;
+    }
+    .login-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        opacity: 0.7;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="password"] {
+        width: 100%;
+        padding: 12px 12px 12px 44px;
+        border-radius: 10px;
+        border: 1.5px solid #e0e0e0;
+        background: #f9f9ff;
+        font-size: 1rem;
+        color: #333;
+        transition: border 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .input-group input[type="text"]:focus,
+    .input-group input[type="password"]:focus {
+        border: 1.5px solid #4158d0;
+        box-shadow: 0 0 0 2px #4158d033;
+        background: #fff;
+    }
+    .btn-login {
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 10px;
+        border: none;
+        background: linear-gradient(90deg, #4158d0 0%, #c850c0 100%);
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(65,88,208,0.12);
+        transition: background 0.2s, transform 0.1s;
+        margin-top: 10px;
+    }
+    .btn-login:hover, .btn-login:focus {
+        background: linear-gradient(90deg, #c850c0 0%, #4158d0 100%);
+        transform: translateY(-2px) scale(1.03);
+    }
+    .info-block {
+        background: #f4f6fb;
+        color: #4158d0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0 18px 0;
+        font-size: 1.05rem;
+        text-align: center;
+        box-shadow: 0 1px 4px rgba(65,88,208,0.08);
+    }
+    .info-block.alert {
+        color: #da3d41;
+        background: #ffeaea;
+    }
+    .info.bt {
+        opacity: 0.6;
+        font-size: 0.92rem;
+        margin-top: 18px;
+        color: #4158d0;
+    }
+    @media (max-width: 700px) {
+        .login-card {
+            padding: 12px 2vw 10px 2vw;
+            max-width: 99vw;
+            margin: 10px auto 24px auto;
+        }
+        .logo {
+            max-width: 90px;
+        }
+        .page-title, h2.page-title {
+            font-size: 1.3rem;
+        }
+        .btn-login {
+            font-size: 0.98rem;
+            padding: 10px 0;
+        }
+        .package-section {
+            margin-top: 18px;
+        }
+        #packages {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+        }
+        .package {
+            padding: 18px 8px 14px 8px;
+        }
+    }
+    @media (max-width: 400px) {
+        .login-card {
+            padding: 6px 1vw 6px 1vw;
+        }
+        .package {
+            padding: 10px 2px 10px 2px;
+        }
+    }
+    </style>
 </head>
 
 <body>
@@ -19,125 +268,73 @@
 
 -->
 
-    $(if chap-id)
-    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
-        <input type="hidden" name="username" />
-        <input type="hidden" name="password" />
-        <input type="hidden" name="dst" value="$(link-orig)" />
-        <input type="hidden" name="popup" value="true" />
-    </form>
-
-    <script src="/md5.js"></script>
-    <script>
-        function doLogin() {
-            document.sendin.username.value = document.login.username.value;
-            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-            document.sendin.submit();
-            return false;
-        }
-
-    </script>
-    $(endif)
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap animated fadeIn">
-                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
-                    <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
-                    <svg class="logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42">
-                        <path fill="#fff" d="M7.32 13.66L0 41.74 3.12 41.74 9.49 15.94 9.58 15.94 15.01 41.74 18.22 41.74 36.86 16.34 36.95 16.34 30.02 41.74 33.18 41.74 40.4 13.66 35.73 13.66 17.23 38.87 11.99 13.66 7.32 13.66zM43.43 21.45L38.19 41.74 41.16 41.74 46.4 21.45 43.43 21.45zM50.68 21.45L45.5 41.74 48.47 41.74 50.36 34.39 55.55 30.77 62.02 41.74 65.27 41.74 57.91 29.28 69.43 21.45 65.46 21.45 51.21 31.36 51.12 31.28 53.66 21.45 50.68 21.45z" />
-                        <path d="M71.18 21.45L65.94 41.74h3l2.74-10.62c1-3.81 3.82-7.39 9.16-7.47.56 0 1.13 0 1.7 0l.66-2.48c-.52 0-1.09 0-1.61 0-4.34 0-6.94 2-8.82 5h-.1l1.23-4.68zM103.8 28.8c0-5-4-7.94-9.63-7.94-8.69 0-13.59 6.37-13.59 13 0 5.07 3.44 8.45 9.72 8.45 9 0 13.5-6.68 13.5-13.53m-3 .52c0 4.72-3.44 10.93-9.95 10.93-5 0-7.32-2.68-7.32-6.61 0-4.76 3.59-10.7 10.1-10.7 4.77 0 7.17 2.6 7.17 6.38M132.33 21.43L134.26 13.66 105.19 13.66 103.27 21.45 112.59 21.45 112.59 21.45 122.99 21.45 122.99 21.45 132.33 21.43zM111.67 25.17L107.55 41.74 117.93 41.74 122.06 25.17 122.06 25.16 111.67 25.16 111.67 25.17zM134 25.17l-4.11 16.57h9.35l4.1-16.57zm10.28-3.73l1.94-7.78h-9.34l-2 7.79zM150.09 13.66L143.11 41.74 152.45 41.74 153.91 35.92 156.04 34.34 159.34 41.74 169.49 41.74 163.26 29.55 174.26 21.33 163.07 21.33 156.18 27.3 156.09 27.3 159.44 13.66 150.09 13.66zM47.45 0c1.14 7.93 5.39 12.74 14.07 13.14A10.69 10.69 0 0 1 47.45 0" fill="#fff" fill-rule="evenodd" />
-                        <path d="M42.91,1.4c.1,0,.11,0,.12.11A16.55,16.55,0,0,0,48.26,13a16.6,16.6,0,0,0,12,4.66c-10,4-20.55-5.6-17.33-16.28" fill="#fff" fill-rule="evenodd" /></svg>
-
-
-                    <p class="info $(if error)alert$(endif)">
-                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
-                        $(endif)
-
-                        $(if error)$(error)$(endif)
-                    </p>
-                    <label>
-                        <img class="ico" src="img/user.svg" alt="#" />
-                        <input name="username" type="text" value="$(username)" placeholder="Username" />
-                    </label>
-
-                    <label>
-                        <img class="ico" src="img/password.svg" alt="#" />
-                        <input name="password" type="password" placeholder="Password" />
-                    </label>
-
-                    <input type="submit" value="Connect" />
-
-                </form>
-                <p class="info bt">Powered by MikroTik RouterOS</p>
-
-            </div>
+    <!-- Removed hidden sendin form and popup login logic. Login form is always visible at the top. -->
+    <header style="width:100%;background:rgba(65,88,208,0.95);padding:24px 0 12px 0;text-align:center;box-shadow:0 2px 12px rgba(65,88,208,0.08);margin-bottom:32px;">
+        <svg class="logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" style="max-width:180px;">
+            <path fill="#fff" d="M7.32 13.66L0 41.74 3.12 41.74 9.49 15.94 9.58 15.94 15.01 41.74 18.22 41.74 36.86 16.34 36.95 16.34 30.02 41.74 33.18 41.74 40.4 13.66 35.73 13.66 17.23 38.87 11.99 13.66 7.32 13.66zM43.43 21.45L38.19 41.74 41.16 41.74 46.4 21.45 43.43 21.45zM50.68 21.45L45.5 41.74 48.47 41.74 50.36 34.39 55.55 30.77 62.02 41.74 65.27 41.74 57.91 29.28 69.43 21.45 65.46 21.45 51.21 31.36 51.12 31.28 53.66 21.45 50.68 21.45z" />
+            <path d="M71.18 21.45L65.94 41.74h3l2.74-10.62c1-3.81 3.82-7.39 9.16-7.47.56 0 1.13 0 1.7 0l.66-2.48c-.52 0-1.09 0-1.61 0-4.34 0-6.94 2-8.82 5h-.1l1.23-4.68zM103.8 28.8c0-5-4-7.94-9.63-7.94-8.69 0-13.59 6.37-13.59 13 0 5.07 3.44 8.45 9.72 8.45 9 0 13.5-6.68 13.5-13.53m-3 .52c0 4.72-3.44 10.93-9.95 10.93-5 0-7.32-2.68-7.32-6.61 0-4.76 3.59-10.7 10.1-10.7 4.77 0 7.17 2.6 7.17 6.38M132.33 21.43L134.26 13.66 105.19 13.66 103.27 21.45 112.59 21.45 112.59 21.45 122.99 21.45 122.99 21.45 132.33 21.43zM111.67 25.17L107.55 41.74 117.93 41.74 122.06 25.17 122.06 25.16 111.67 25.16 111.67 25.17zM134 25.17l-4.11 16.57h9.35l4.1-16.57zm10.28-3.73l1.94-7.78h-9.34l-2 7.79zM150.09 13.66L143.11 41.74 152.45 41.74 153.91 35.92 156.04 34.34 159.34 41.74 169.49 41.74 163.26 29.55 174.26 21.33 163.07 21.33 156.18 27.3 156.09 27.3 159.44 13.66 150.09 13.66zM47.45 0c1.14 7.93 5.39 12.74 14.07 13.14A10.69 10.69 0 0 1 47.45 0" fill="#fff" fill-rule="evenodd" />
+            <path d="M42.91,1.4c.1,0,.11,0,.12.11A16.55,16.55,0,0,0,48.26,13a16.6,16.6,0,0,0,12,4.66c-10,4-20.55-5.6-17.33-16.28" fill="#fff" fill-rule="evenodd" />
+        </svg>
+        <h1 style="color:#fff;font-size:2.2rem;font-weight:700;margin:10px 0 0 0;letter-spacing:1px;">Welcome to the Internet Hotspot</h1>
+        <p style="color:#fff;opacity:0.85;font-size:1.1rem;margin:8px 0 0 0;">Fast, secure, and easy access for everyone</p>
+    </header>
+    <div class="stylish-bg" style="padding-top:0;">
+        <div class="login-card" style="margin-top:0;">
+            <h2 class="page-title" style="margin-bottom:10px;">User Login</h2>
+            <form name="login" class="login-form" action="$(link-login-only)" method="post">
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <div class="input-group">
+                    <img class="input-icon" src="img/user.svg" alt="User" />
+                    <input name="username" type="text" value="$(username)" placeholder="Your given phone number" required />
+                </div>
+                <div class="input-group">
+                    <img class="input-icon" src="img/password.svg" alt="Password" />
+                    <input name="password" type="password" placeholder="Your given phone number" required />
+                </div>
+                <button type="submit" class="btn-login">Log In</button>
+                <div class="info-block $(if error)alert$(endif)" style="margin-top:10px;">
+                    $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
+                    $(endif)
+                    $(if error)$(error)$(endif)
+                </div>
+            </form>
+            <p class="info bt">Powered by MikroTik RouterOS</p>
         </div>
     </div>
-</form>
 <!-- Package purchase section -->
-<div class="main">
-    <div class="wrap animated fadeIn">
-        <h1>Buy Internet Packages</h1>
-        <div id="packages">
-            <div class="package">
-                <h2>Basic Pack</h2>
-                <p>1GB for 1 day</p>
-                <p>Price: 50 BDT</p>
-                <button onclick="buyWithUddoktaPay('Basic Pack', '50')">Buy Now</button>
-            </div>
-            <div class="package">
-                <h2>Standard Pack</h2>
-                <p>5GB for 7 days</p>
-                <p>Price: 200 BDT</p>
-                <button onclick="buyWithUddoktaPay('Standard Pack', '200')">Buy Now</button>
-            </div>
-            <div class="package">
-                <h2>Premium Pack</h2>
-                <p>20GB for 30 days</p>
-                <p>Price: 700 BDT</p>
-                <button onclick="buyWithUddoktaPay('Premium Pack', '700')">Buy Now</button>
-            </div>
+<div class="package-section">
+    <div class="package-title">Buy Internet Packages</div>
+    <div id="packages">
+        <div class="package">
+            <h2>Basic Pack</h2>
+            <ul>
+              <li><b>Data Limit:</b> 1GB</li>
+              <li><b>Validity:</b> 1 day</li>
+              <li><b>Speed Limit:</b> 2 Mbps</li>
+            </ul>
+            <p>Price: 50 BDT</p>
+            <button onclick="window.location.href='buy.html?package=Basic%20Pack&amount=50'" class="btn-login">Buy Now</button>
+        </div>
+        <div class="package">
+            <h2>Standard Pack</h2>
+            <ul>
+              <li><b>Data Limit:</b> 5GB</li>
+              <li><b>Validity:</b> 7 days</li>
+              <li><b>Speed Limit:</b> 5 Mbps</li>
+            </ul>
+            <p>Price: 200 BDT</p>
+            <button onclick="window.location.href='buy.html?package=Standard%20Pack&amount=200'" class="btn-login">Buy Now</button>
+        </div>
+        <div class="package">
+            <h2>Premium Pack</h2>
+            <ul>
+              <li><b>Data Limit:</b> 20GB</li>
+              <li><b>Validity:</b> 30 days</li>
+              <li><b>Speed Limit:</b> 10 Mbps</li>
+            </ul>
+            <p>Price: 700 BDT</p>
+            <button onclick="window.location.href='buy.html?package=Premium%20Pack&amount=700'" class="btn-login">Buy Now</button>
         </div>
     </div>
 </div>
-<script>
-// UddoktaPay integration
-function buyWithUddoktaPay(packageName, amount) {
-    // Prompt user for name and email (or use your own user system)
-    var fullName = prompt('Enter your full name:');
-    if (!fullName) return;
-    var email = prompt('Enter your email:');
-    if (!email) return;
-    var data = {
-        full_name: fullName,
-        email: email,
-        amount: amount,
-        metadata: { package: packageName },
-        redirect_url: window.location.origin + '/success.html',
-        cancel_url: window.location.origin + '/cancel.html',
-        return_type: 'GET'
-    };
-    fetch('https://hplink.paymently.io/api/checkout-v2', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'RT-UDDOKTAPAY-API-KEY': 'iY3IxHICkUEipO92rTpcjjrJXATSpu6CAuWRPN1N'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(res => {
-        if (res.status && res.payment_url) {
-            window.location.href = res.payment_url;
-        } else {
-            alert('Payment initiation failed: ' + (res.message || 'Unknown error'));
-        }
-    })
-    .catch(() => alert('Error connecting to payment gateway.'));
-}
-</script>
-</body>
-
-</html>
+<!-- Payment integration moved to buy.html -->

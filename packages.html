@@ -7,26 +7,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Buy Internet Packages</h1>
-    <div id="packages">
-        <!-- Example packages -->
-        <div class="package">
-            <h2>Basic Pack</h2>
-            <p>1GB for 1 day</p>
-            <p>Price: 50 BDT</p>
-            <button onclick="payWithBkash('basic')">Buy with bKash</button>
-        </div>
-        <div class="package">
-            <h2>Standard Pack</h2>
-            <p>5GB for 7 days</p>
-            <p>Price: 200 BDT</p>
-            <button onclick="payWithBkash('standard')">Buy with bKash</button>
-        </div>
-        <div class="package">
-            <h2>Premium Pack</h2>
-            <p>20GB for 30 days</p>
-            <p>Price: 700 BDT</p>
-            <button onclick="payWithBkash('premium')">Buy with bKash</button>
+    <div class="stylish-bg">
+        <div class="login-card">
+            <h1 class="page-title">Buy Internet Packages</h1>
+            <div id="packages">
+                <div class="package">
+                    <h2>Basic Pack</h2>
+                    <p>1GB for 1 day</p>
+                    <p>Price: 50 BDT</p>
+                    <button onclick="payWithBkash('basic')" class="btn-main">Buy with bKash</button>
+                </div>
+                <div class="package">
+                    <h2>Standard Pack</h2>
+                    <p>5GB for 7 days</p>
+                    <p>Price: 200 BDT</p>
+                    <button onclick="payWithBkash('standard')" class="btn-main">Buy with bKash</button>
+                </div>
+                <div class="package">
+                    <h2>Premium Pack</h2>
+                    <p>20GB for 30 days</p>
+                    <p>Price: 700 BDT</p>
+                    <button onclick="payWithBkash('premium')" class="btn-main">Buy with bKash</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="bkash.js"></script>
